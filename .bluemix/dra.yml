@@ -1,0 +1,4 @@
+
+---
+parameters:
+  criteria: $file(criteria.json)
