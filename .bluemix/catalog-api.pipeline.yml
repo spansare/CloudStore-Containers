@@ -61,22 +61,3 @@ stages:
       export APP_URL=http://$(cf app $CF_APP_NAME | grep urls: | awk '{print $2}')
       # View logs
       #cf logs "${CF_APP_NAME}" --recent
-  - name: Functional Tests
-    type: tester
-    extension_id: ibm.devops.services.pipeline.dra_upload_results
-    APPLICATION_NAME: ${CF_APP_NAME}
-    ENVIRONMENT: ${DEV_SPACE_NAME}
-    LIFE_CYCLE_STAGE_SELECT: fvt
-    ADDITIONAL_LIFE_CYCLE_STAGE_SELECT: none
-    LOG_FILE: tests/fvt/mochafvttest.json
-    COMMAND: |-
-      #!/bin/bash
-      export CATALOG_API_TEST_SERVER=$APP_URL
-      GRUNTFILE="tests/Gruntfile.js"
-      if [ -f $GRUNTFILE ]; then
-        npm install -g npm@3.7.2 ### work around default npm 2.1.1 instability
-        npm install
-        grunt dev-fvt --no-color --gruntfile $GRUNTFILE --base .
-      else
-        echo "$GRUNTFILE not found."
-      fi
