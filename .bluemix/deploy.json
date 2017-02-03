@@ -118,7 +118,41 @@
                   "type": "select",
                   "key": "dev-space",
                   "readonly": false
-                } 
+                } ,
+                {
+                  "type": "label",
+                  "title": "Test stage"
+                },
+                {
+                  "type": "select",
+                  "key": "qa-region"
+                },
+                {
+                  "type": "select",
+                  "key": "qa-organization"
+                },
+                {
+                  "type": "select",
+                  "key": "qa-space",
+                  "readonly": false
+                },
+                {
+                  "type": "label",
+                  "title": "Production stage"
+                },
+                {
+                  "type": "select",
+                  "key": "prod-region"
+                },
+                {
+                  "type": "select",
+                  "key": "prod-organization"
+                },
+                {
+                  "type": "select",
+                  "key": "prod-space",
+                  "readonly": false
+                }
             ]
         }
     ]
