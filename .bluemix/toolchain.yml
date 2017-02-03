@@ -114,6 +114,21 @@ orders-api-build:
 messaging:
   service_id: slack
   include: slack.yml
+  
+#DevOps Insights
+dra:
+  service_id: draservicebroker
+  include: dra.yml
+
+#Sauce Labs
+test:
+  service_id: saucelabs
+  include: saucelabs.yml
+
+#PagerDuty
+alerting:
+  service_id: pagerduty
+  include: pagerduty.yml
 
 #Web IDE
 webide:
