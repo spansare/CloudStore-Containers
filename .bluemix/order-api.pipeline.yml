@@ -54,7 +54,7 @@ stages:
       application: ${CF_APP_NAME}
     script: |-
       #!/bin/bash
-      cf create-service cloudantNoSQLDB Lite myMicroservicesCloudant
+      cf create-service cleardb spark myMicroservicesSQL
       # Push app
       export CF_APP_NAME="dev-$CF_APP"
       cf push "${CF_APP_NAME}"
