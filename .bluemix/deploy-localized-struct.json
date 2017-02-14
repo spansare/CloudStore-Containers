@@ -11,7 +11,10 @@
         },
        "ui-app-name": {
             "description": "$deploy.appDescription3"
-        }
+        },
+       "bridge-app-name": {
+            "description": "$deploy.appDescription4"
+        } 
     },
     "form": [
        {
@@ -24,6 +27,9 @@
         },
         {
           "title": "$deploy.appName3"
+        },
+        {
+          "title": "$deploy.appName4"
         },
         {
             "items": [
