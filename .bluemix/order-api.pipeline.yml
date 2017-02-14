@@ -187,3 +187,7 @@ stages:
           exit $RESULT
       fi
       echo -e "${green}Execution complete${no_label}"
+      
+      # Bind MySQL service to Container Group
+      cf create-service cleardb spark myMicroservicesSQL
+      cf ic bind-service ${CF_APP_NAME} myMicroservicesSQL
