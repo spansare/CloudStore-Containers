@@ -100,7 +100,7 @@ stages:
     type: text
   - name: DESIRED_INSTANCES
     value: 1
-    type: number
+    type: text
   - name: BIND_TO
     value: container-bridge-cloudstore
     type: text
