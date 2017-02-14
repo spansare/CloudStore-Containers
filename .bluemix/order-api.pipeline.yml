@@ -1,12 +1,35 @@
 ---
 stages:
-- name: BUILD
+- name: BUILD Code
   inputs:
   - type: git
     branch: master
     service: ${ORDER_API_REPO}
   triggers:
   - type: commit
+  properties:
+  - name: LOGICAL_APP_NAME
+    value: ${CF_APP_NAME}
+    type: text
+  - name: BUILD_PREFIX
+    value: master
+    type: text
+  - name: LOGICAL_ENV_NAME
+    value: master
+    type: text
+  jobs:
+  - name: Build Code
+    type: builder
+    script: |-
+      mvn install:install-file -Dfile=jars/nosqljson.jar -DgroupId=com.ibm.nosql -DartifactId=nosqljson -Dversion=1.0 -Dpackaging=jar -DgeneratePom=true
+      mvn clean package
+- name: BUILD Container Image
+  inputs:
+  - type: job
+    stage: BUILD Code
+    job: Build Code
+  triggers:
+  - type: stage
   properties:
   - name: LOGICAL_APP_NAME
     value: ${CF_APP_NAME}
@@ -88,7 +111,7 @@ stages:
 - name: DEPLOY
   inputs:
   - type: job
-    stage: BUILD
+    stage: BUILD Container Image
     job: Container build
   triggers:
   - type: stage
