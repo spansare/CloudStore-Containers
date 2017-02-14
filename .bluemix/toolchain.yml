@@ -38,6 +38,15 @@ ui-repo:
     type: clone
     has_issues: true
   hidden: [form, description]
+  
+bridge-repo:
+  service_id: githubpublic
+  parameters:
+    repo_name: "{{github.parameters.bridge-repo_name}}"
+    repo_url: "{{github.parameters.bridge-repo_url}}"
+    type: clone
+    has_issues: true
+  hidden: [form, description]
 
 # Pipelines
 ui-build:
@@ -88,11 +97,22 @@ orders-api-build:
       execute: true
     services: ["orders-api-repo"]
   hidden: [form, description]
-
-#Slack
-messaging:
-  service_id: slack
-  include: slack.yml
+  
+bridge-build:
+  service_id: pipeline
+  parameters:
+    name: "bridge-{{name}}"
+    configuration:
+      content: $file(bridge.pipeline.yml)
+      env:
+        CATALOG_API_REPO: "bridge-repo"
+        CF_APP_NAME: "{{deploy.parameters.bridge-app-name}}"
+        DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
+        DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
+        DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
+      execute: true
+    services: ["bridge-repo"]
+  hidden: [form, description]
 
 #Web IDE
 webide:
@@ -108,6 +128,7 @@ deploy:
     orders-app-name: "{{orders-api-repo.parameters.repo_name}}"
     catalog-app-name: "{{catalog-api-repo.parameters.repo_name}}"
     ui-app-name: "{{ui-repo.parameters.repo_name}}"
+    bridge-app-name: "{{bridge-repo.parameters.repo_name}}"
 
 #Github
 github:
@@ -121,3 +142,5 @@ github:
     orders-api-repo_url: https://github.com/spansare/Microservices-Orders-Container
     ui-repo_name: "ui-{{name}}"
     ui-repo_url: https://github.com/spansare/Microservices-UI-Container
+    bridge-repo_name: "bridge-{{name}}"
+    bridge-repo_url: https://github.com/spansare/container-bridge-cloudstore
