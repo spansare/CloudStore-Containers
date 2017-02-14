@@ -31,9 +31,13 @@
        "ui-app-name": {
             "description": "The name of the app for the UI that calls the Orders and Catalog APIs",
             "type": "string"
-        }
+        },
+       "bridge-app-name": {
+            "description": "The name of the app for the Container-Service bridge",
+            "type": "string"
+        } 
     },
-    "required": ["dev-region", "dev-organization", "dev-space", "orders-app-name", "catalog-app-name", "ui-app-name"],
+    "required": ["dev-region", "dev-organization", "dev-space", "orders-app-name", "catalog-app-name", "ui-app-name", "bridge-app-name"],
     "form": [
        {
           "type": "validator",
@@ -56,6 +60,12 @@
           "readonly": false,
           "title": "UI app name",
           "key": "ui-app-name"
+        },
+        {
+          "type": "text",
+          "readonly": false,
+          "title": "Bridge app name",
+          "key": "bridge-app-name"
         },
         {
             "type": "table",
