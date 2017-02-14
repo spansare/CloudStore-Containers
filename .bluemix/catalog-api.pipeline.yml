@@ -102,11 +102,8 @@ stages:
     value: 1
     type: number
   - name: BIND_TO
-    value: container-bridge
+    value: container-bridge-cloudstore
     type: text
-  - name: DESIRED_INSTANCES
-    value: 1
-    type: number
   - name: CF_APP_NAME
     value: undefined
     type: text
