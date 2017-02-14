@@ -120,7 +120,7 @@ stages:
     value: ${CF_APP_NAME}
     type: text
   - name: BIND_TO
-    value: container-bridge-cloudstore
+    value: ${BIND_BRIDGE_APP}
     type: text
   - name: DESIRED_INSTANCES
     value: 1
