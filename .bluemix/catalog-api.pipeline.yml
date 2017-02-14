@@ -191,4 +191,4 @@ stages:
       
       # Create and Bind Cloudant database service
       cf create-service cloudantNoSQLDB Lite myMicroservicesCloudant
-      
+      cf ic bind-service ${CF_APP_NAME} myMicroservicesCloudant
