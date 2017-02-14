@@ -119,6 +119,12 @@ stages:
   - name: ROUTE_HOSTNAME
     value: ${CF_APP_NAME}
     type: text
+  - name: BIND_TO
+    value: container-bridge-cloudstore
+    type: text
+  - name: DESIRED_INSTANCES
+    value: 1
+    type: number
   - name: CF_APP_NAME
     value: undefined
     type: text
@@ -211,6 +217,3 @@ stages:
       fi
       echo -e "${green}Execution complete${no_label}"
       
-      # Bind MySQL service to Container Group
-      cf create-service cleardb spark myMicroservicesSQL
-      cf ic bind-service ${CF_APP_NAME} myMicroservicesSQL
