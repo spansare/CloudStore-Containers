@@ -188,3 +188,7 @@ stages:
           exit $RESULT
       fi
       echo -e "${green}Execution complete${no_label}"
+      
+      # Create and Bind Cloudant database service
+      cf create-service cloudantNoSQLDB Lite myMicroservicesCloudant
+      
