@@ -98,6 +98,12 @@ stages:
   - name: ROUTE_HOSTNAME
     value: ${CF_APP_NAME}
     type: text
+  - name: BIND_TO
+    value: container_bridge
+    type: text
+  - name: DESIRED_INSTANCES
+    value: 1
+    type: number
   - name: CF_APP_NAME
     value: undefined
     type: text
@@ -188,7 +194,3 @@ stages:
           exit $RESULT
       fi
       echo -e "${green}Execution complete${no_label}"
-      
-      # Create and Bind Cloudant database service
-      cf create-service cloudantNoSQLDB Lite myMicroservicesCloudant
-      cf ic bind-service ${CF_APP_NAME} myMicroservicesCloudant
