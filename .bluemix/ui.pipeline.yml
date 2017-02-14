@@ -98,7 +98,7 @@ stages:
     type: text
   - name: DESIRED_INSTANCES
     value: 1
-    type: number
+    type: text
   - name: CF_APP_NAME
     value: undefined
     type: text
