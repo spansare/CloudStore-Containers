@@ -99,7 +99,7 @@ stages:
     value: ${CF_APP_NAME}
     type: text
   - name: BIND_TO
-    value: container_bridge
+    value: container-bridge
     type: text
   - name: DESIRED_INSTANCES
     value: 1
