@@ -58,5 +58,6 @@ stages:
       cf create-service cleardb spark myMicroservicesSQL
       # Push app
       cf push "${CF_APP_NAME}"
+      export CF_APP_NAME="$CF_APP"
       export APP_URL=http://$(cf app $CF_APP_NAME | grep urls: | awk '{print $2}')
       
