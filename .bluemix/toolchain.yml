@@ -78,6 +78,7 @@ catalog-api-build:
         DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
         DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
         DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
+        BIND_BRIDGE_APP: "{{deploy.parameters.bridge-app-name}}"
       execute: true
     services: ["catalog-api-repo"]
   hidden: [form, description]
@@ -94,6 +95,7 @@ orders-api-build:
         DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
         DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
         DEV_REGION_ID: "{{deploy.parameters.dev-region}}"
+        BIND_BRIDGE_APP: "{{deploy.parameters.bridge-app-name}}"
       execute: true
     services: ["orders-api-repo"]
   hidden: [form, description]
@@ -105,7 +107,7 @@ bridge-build:
     configuration:
       content: $file(bridge.pipeline.yml)
       env:
-        CATALOG_API_REPO: "bridge-repo"
+        BRIDGE_REPO: "bridge-repo"
         CF_APP_NAME: "{{deploy.parameters.bridge-app-name}}"
         DEV_SPACE_NAME: "{{deploy.parameters.dev-space}}"
         DEV_ORG_NAME: "{{deploy.parameters.dev-organization}}"
